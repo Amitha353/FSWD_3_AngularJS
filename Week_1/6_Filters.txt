@@ -1,0 +1,23 @@
+Angular filters
+-------------
+
+A filter allows us to format the value of an expression for display to the enduser without modifying the underlying data.
+
+-> Filters can be used in view templates, controllers or services.
+
+-> Angular comes with a number of built in filters.
+Custom filers can also be built.
+
+--------
+Angular built-in filters :-
+-----
+1. uppercase/lowercase
+2. currency
+3. date
+4. filter : selects a subset of an array based on a specified criteria.
+5.  orderBy : orders the array based on the criteria specified.
+6.Others -> json, limitTo
+
+-> ng-class directive allows to specify a class that should be a css class that should be applied to the HTML element.
+
+-> ng-click directive the action that must be taken with that element is clicked.

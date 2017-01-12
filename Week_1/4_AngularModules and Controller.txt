@@ -1,0 +1,42 @@
+Angular Modules and Controllers
+--------------------
+
+Angular is built with MVC in mind. (MV-C/VM)
+
+Angular Modules
+---------------
+It is a collection of 
+i. Controllers
+ii. Directives
+iii. Filters
+iv. Services
+v. Other configuration Information
+
+<html ngApp="confusionApp">//module -> confusionApp that acquires the control of the entire page.
+    <body>
+        <script>
+            var app = angular.module('confusionApp',[]);//the angulat module is defines;[]-> second parameter
+        </script>
+    </body>
+</html>
+
+Angular Controller
+--------------------
+Javascript Object coontaining attributes/properties and functions.
+Stores variables and exposes the functionality to be used in expressions and directives.
+
+Controller is defined using ng-controller directive on an HTML element.
+<div class="row row-content"
+        ng-controller="menuController as menuCtrl">
+</div>
+
+html ngApp="confusionApp">//module -> confusionApp that acquires the control of the entire page.
+    <body>
+        <script>
+            var app = angular.module('confusionApp',[]);//the angulat module is defines;[]-> second parameter
+            app.controller('menuController', function() {
+            
+            });//the second parameter is an anonymous function that implements the controller code.
+        </script>
+    </body>
+</html>

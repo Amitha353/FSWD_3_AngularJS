@@ -1,0 +1,117 @@
+Introduction to AngularJS
+
+Designed by Misko Hevery, June 2012, Most Popular Front-End FrameWork.
+
+-----------------
+What is Angular?
+Angular is a Structural Framework for dynamic web applications.
+HTML -> supports static documents.
+
+Angular fills the gap to support dynamic applications
+a. solving impedence mismatch -> backend data and HTML static data;
+b. Designed with CRUD applications data-driven in mind. (CRUD -> Create, Read, Update, Deletion);
+c. Declarative;
+
+-------------------------------------
+Angular Vocabulary
+
+a. Two-way Data Binding
+b. Modules
+c. Scope
+d. Controllers
+e. Directives
+f. Filters
+g. Templates
+h. Factory
+i. Routing
+j. Service
+k. Testing
+l. Provider
+--------------------------------------
+Getting Started using Angular
+
+Through Bower get a hold of Angular.
+
+-> Include the AngularJS code.
+<script src="scripts/angular.min.js"></script>
+
+-> How to make use of Angular.
+Angular built in directives -> HTML Custom directives -> they are provided to extend HTML dynamic behavior via ng-* attributes or data-ng-* attributes.
+
+Example -> referred via camelCase also
+i.   ng-app
+ii.  ng-bind
+iii. ng-model
+iv.  ng-init
+v.   ng-repeat
+-> Dash-delimited attributes are used since HTML is case insensitive.
+
+->Directives -> Declarative programming is in action. declaratively call Javascript functions.
+
+----------------------------------------------------------------------------
+i. ng-app -> start up and bootstrap the application.
+Applied to the HTML tag to specify the root of the application.
+
+<HTML ng-app=""> tag;
+----------------------------------------------------------------------------
+ii. ng-init -> angular to 
+-> initialize some variable or 
+-> execute an expression.
+
+<p ng-init="index=1"></p> -> //initialize some variable
+
+//Expressions
+<p>6 + 5={{ 6 + 5 }}</p>
+<div class="media-body">
+    <p>{{dish.description}}</p>
+</div>
+
+Angular Expression
+--------------
+Javascript expression
+-> Evaluated against an Angular scope object.
+-> No conditionals, loops or exceptions
+-> Expressions are enclosed in {{ expression }}
+--------------------------------------------------------------------------------
+iii. ngModel Directive -> binds the input value to a variable within the scope.
+-> Two-way binding.
+
+<div class="media-body">
+    <p>Comment:{{dish.comment}}</p>
+    <p>Type your comment: <input type="text" ng-model="dish.comment"></p>
+</div>
+
+Web Page 
+----------
+Comment:            _______________
+Type your comment: |______________|
+
+//Type something the box it will be reflected beside comment:
+Comment:            _______________
+Type your comment: |Great Dish!    |
+                    ---------------       ////TWO-WAY DATA-BINDING     
+//Ouptut
+Comment:Great Dish! _______________
+Type your comment: |Great Dish!    |
+                    --------------- 
+-------------------------------------------------------------------------------------
+Two-Way Data Binding
+-------------
+
+-> Binding HTML or CSS property to a Javascript variable.
+-> When the value of JS variable changes , the HTML/CSS property is also updated.
+-> Also vice-versa. HTML/CSS prperty varies followingly JS variable value changes.
+-------------------------------------------------------------------------------------
+iv. ngRepeat Directive
+-> Looping Construct in AngularJs
+-> Loops over items in a collections.
+-> Instantiates a template for each item.
+Example
+------
+    <ul class="media-list">
+        <li class="media" ng-repeat="dish in dishes">
+        ........
+        </li>
+    </ul>
+    
+-------------------------------------------------------------------------------------

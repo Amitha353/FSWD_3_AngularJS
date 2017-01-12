@@ -1,0 +1,23 @@
+Exercise
+-> Unzip confusion
+-> Inside confusion
+    i. app -> 
+        a. fonts
+        b. images
+        c. menu.html -> start page for the exercise.
+        d. scripts -> js
+        e. styles -> css
+    ii. bower_components //empty
+    ii. bower.json
+-> Open Terminal -> go to ConFusion folder
+    -> bower install // bower go and fetch all files.
+-> Open Confusion folder
+    -> menu.html
+        -> body -> empty
+        -> Adding angular files
+            <script src="../bower_components/angular/angular.min.js"></script>
+    ->Configure web page -> Angular Applicatiom
+        -><html lang="en" ng-app>
+        -> ng-init -> inside the row-content;
+        
+    

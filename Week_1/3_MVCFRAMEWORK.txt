@@ -1,0 +1,55 @@
+MODEL-VIEW-CONTROLLER
+-----------------
+
+Design Pattern -> Well-documented solutions to a recurring problem, also referred as an architectural pattern.
+
+Software Design Patterns are solutions to commonly occuring problems in software.
+
+-> Gang of Four:- Book
+
+I. The Model-View-controller(MVC) Framework
+-----------------------------------
+It is a software engineering pattern that allows isolation of domain logic from user interface.This allows independent development, testing and maintaing of the code.
+
+View -> concerned with presenting the information to the users.
+Controller -> Mediates between the view and the model.
+Model -> Stores the Domain state/logic.
+
+I. Model
+-> Manages the behavior and data of the application domain.
+-> responds to request for information about its state.(from view)
+-> responds to instructions to change the state(from controller).
+-> In event-driven systems, the model notifies observers(views) when information changes so that they can react.
+
+controller change        Model          state   View
+            ----->  (Behavior and data) ------>
+            
+II. View
+-> Present in a user interactive way.
+-> View represents one representation of the model state.
+-> From a single model multiple views can be represented.
+-> In MVC framework,the viewport has one to one correspondence with the display surface on UI.
+
+III. Controller
+-> Receives Information from users/ user input and with this information it initiates a change in the state of the model.
+->Controller accepts input from the user and instructs the model and simulatneously instruct the view to change the display of information.
+                ___________                
+        /\----->|Controller|
+        ||      |          |
+        ||      |          |
+        ||      |          |
+                |          |
+    ____________\/        \/_______
+     View ---------------->  Model
+        <=  =   =   =   =   
+----------------------------------------------------------------------------------------
+II. Model View View-Model (MVVM)
+-> Descendent of MVC.
+-> Model -> Business Logic and Dat.
+-> View - View Model -> Oresentation and Presentation Logic
+
+        Data Binding(Declarative)
+|View| <------> |View Model| --------> |Model|
+                            <=  =   =
+        Presentation                    Business Logic
+        /Presnt Logic                   and Data
