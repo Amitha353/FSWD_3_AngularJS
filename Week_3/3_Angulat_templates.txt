@@ -1,0 +1,24 @@
+Angular Templates
+-------------------------
+Angular templates are written in HTML and is annotated with angular specific elements and attributes.
+The dynamic view of the Angular application is the result of the combination of the angular template with a controller and model that stores the data.
+-> Dynamic view = angular template + controller +  model;
+
+Angular elements and attributes:
+i. Directives
+ii. Marksup: {{ expressions }}
+iii. Filter
+iv. Form Controls
+
+Angular is taking control over HTML inversion control unlike JQuery.
+The HTML template are purely there to specify how things should be laid out, but it is Angular that is doing all the action behind the scenes inorder to render the view to the user.
+
+-> ngInclude Directive
+-----------------------
+This directive is used to fetch, compile, and include an external HTML fragment.
+
+-> Usage:
+<div ng-include="'menu.html'"></div>
+<ng-include src="'menu.html'"></ng-include>
+
+-> nginclude creates a new scope like the ng-controller.

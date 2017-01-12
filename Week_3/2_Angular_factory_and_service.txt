@@ -1,0 +1,125 @@
+Angular Factory and service
+----------------------------
+How Angular Factory and service can support date being provided to your contollers and comminicate with backend servers?
+--------------
+
+** Angular Services
+-------------
+-> They are substitutable objects that are wired together using dependency injection. Services are objects that stand on their own and when required they can be injected intio controllers or other angular elements.
+
+-> Services are used to organize our code in an efficient manner and share code accross an app.
+
+-> Angular services are Lazy instantaited meaning that they will be instantiated only when they are needed, or when they are necessary to do that.
+
+->Angular services are singletons. Singletons is a software pattern. Singleton means it is only a single instance of that particular object.You cannot create multiple copies of that.You can centralize all access to that single object;
+----------------------------------------------------------------------------------------------
+**Angular's Built-in Services
+------------------------
+-> Angular comes with a lot of built in services:-
+All angular servicesare annotated with $ in the beginning.
+- eq:- 
+a. $http -> communicate with the server;(facilitates communication with remote HTTP servers via the browser's XMLHttpRequest object or via JSONP->JSON with Padding)
+
+b.$scope -> glue bewteen the controller and the view.
+(Scope is an object that refers to the application model. It is an execution context for expressions. Scopes are arranged in a hierarchial structure which mimincs the DOM structure of the application). 
+Scopes can watch expressions and propagate events.
+
+Scopes provide -> $watch -> to observe model mutation;
+Scopes provide -> $apply -> to propagate any model changes through the system into the view outside the angular realm(controllers, services, Angular event handlers);
+
+Scopes can be nested to limit access to the properties of application components while providing access to shared model properties. Nested scopes are either "child scopes" or "isolate scopes". A "child scope" (prototypically) inherits properties from its parent scope. An "isolate scope" does not. 
+ 
+c.$rootscope -> Every application as a single root scope. All other scopes are descendents scopes of the root scope. Scopes provide a separation between the model and the view, via mechanism for watching the model change.
+
+d.$location -> The $location service parses the URL in the browser address bar (based on the window.location) and makes the URL available to your application. Changes to the URL in the address bar are reflected into the $location service and changes to $location are reflected into the browser address bar;
+-> The window location is a read-only property that returns a location object with information about the current location of the document;
+alert(location);
+
+e. $parse -> It converts Angular expression into a function.
+$parse(expression);
+
+f. $cacheFactory.Cache -> 
+A cache object used to store and retrieve date, primarily used by $http and the script directive to cache templates and other data.
+
+(Cache is a hardware or software component that stores data so future requests for that data can be served faster; Data stored in the cache might be the result of an earlier computation, dplication of data stored elsewhere).
+
+g. $cacheFactory -> factory that constructs cache objects and gives access to them;
+
+h. $templateCache -> The first time a template is used, it is loaded in the template cache for quick retrieval. Yo can load templates directly into the cache in a script tag, or by consuming the $templateCache service directly;
+
+(the script tag containing the template does not need to be included in the head of the document, but it must be a descendent of the $rootElement (IE, element with ng-app attribute), otherwise the template will be ignored.)
+
+i. $animate -> The $animate service exposes a series of DOM utility methods that provide support for animation hooks. The default behavior is the application of DOM operations, however, when an animation is detected (and animations are enabled), $animate will do the heavy lifting to ensure that animation runs with the triggered DOM operation.
+
+Once active then all structural ng- directives will trigger animations as they perform their DOM-related operations (enter, leave and move). Other directives such as ngClass, ngShow, ngHide and ngMessages also provide support for animations.
+
+j. $injector (dependency) -> $injector is used to retrieve object instances as defined by provider, instantiate types, invoke methods, and load modules;
+
+k. $provide
+- service in module auto
+The $provide service has a number of methods for registering components with the $injector. Many of these functions are also exposed on angular.Module.
+
+-> Inject them using DI;
+--------------------------------------------------------
+Creating Your own service
+--------------------
+-> 5 different functions that declare services.
+a. *service()
+b. *factory()
+c. provider()
+d. constant()
+e. value()
+
+----------------------------------------------------------------------------------------
+Angular factory
+---------------
+A factory is associated with the angular module.
+
+Inside the factory, when a call is made to a factory, it is expected to return a javascript object, that contains the function.
+
+angular.module('confusionApp')
+    .factory('menuFactory', function(){
+    
+        var menufac = {};
+        var dishes = [....];
+        
+        menufac.getDishes = function() {
+            return dishes;
+        };
+        
+        menufac.getDish = function(index) {
+            return dishes[index];
+        };
+        return menufac;
+    });
+    
+usage
+------
+angular.module('confusionApp')
+.controller('MenuController',['$scope','menuFactory', function($scope, menuFactory) {
+    $scope.dishes = menuFactory.getDishes();
+}]);
+-------------------------------------------------------------------------------------
+Angular Service
+--------------
+In the service approach, angular implicitly uses a new operator and then constructs a copy of this.Here there is no Javascript object inside, there the functions are directly attached to the service object. Unlike factory where the function are attched to the JS object an thereafter to the service object.
+
+angular.module('confusionApp')
+    .service('menuFactory', function() {
+        var dishes = {....};
+        
+        this.getDishes = function() {
+            return dishes;
+        };
+        
+        this.getDish = function(index) {
+            return dishes[index];
+        };
+    });
+    
+usage
+----------
+angular.modulle('confusionApp')
+.controller('MenuController', ['$scope','menuFactory', function($scope, menuFactory){
+    $scope.dishes = menuFactory.getDishes();
+}]);

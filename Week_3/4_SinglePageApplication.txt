@@ -1,0 +1,25 @@
+Single Page Application
+---------------------------
+Web application or web site that fits in a single page.
+-> No need to reload the entire page.
+-> User experience like a native desktop application.
+-> Most resources are retrieved with single page load.
+-> Redraw parts of the page when needed without requiring a full server roundtrip.
+
+Challenges in SPA
+-----------------------
+i. Search engine optimization ->  If you have search engines that crawl your website to extract data and index information, then SPA might not be a cooperative, cause the view is rendered on the fly all this cannot be preconstructed as the user interacts with the website.
+
+Some crawlers have enough resources to navigate through resources of single data applications and index style.
+
+Also much of the rendering work is offloaded of the client side rather than the server side. So the server is pretty much acting as a data source and nothing more than that.
+
+In traditional websites,the server would be rendering the HTML.
+
+ii. Partitioning the responsibility between client and server.
+
+iii. Maintaing history.
+
+iv. Analytics.
+
+v. Speeding up the initial page load.

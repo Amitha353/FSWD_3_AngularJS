@@ -1,0 +1,100 @@
+Angular ngRoute and SPAs
+------------------------------------
+Advantages to implement SPA's
+1. Data Binding -> one-way and two-way;
+2. MVC/MVVM/MVM framework support -> modular implementation easy;
+3. View is rendered from the template, based on the data the model receives from the controller;
+4. Location and Routing
+
+
+Role of Client and Server in SPA
+--------------------------------
+-> Server
+i. Serves up data using the REST API.
+ii. Supplies the Static HTML pages, Angular templates and resources;
+
+-> Rendering of the view is completely done on the client-side.
+- Templating and routing also done in angular;
+
+
+Deep Linking
+----------------
+All resources on the website are identified by using a URL.
+-> Deep Linking -> Allows you to specify a hyperlink that specifies the link to a specific searchable or indexed piece of web content.
+
+Eg: - http://www.conFusion.food/index.html#/menu/0;
+
+-> Using the url followed by intra page references using a hashtag followed by a link;
+
+-> SPA's hijack the hashtag approach and use that to be able to do support for SPA's; Anything following the hash does not lead to a pag reload; (#/menu/0 -> intrapage)(hence if anything changes here the browser does not reload); -> SPA's take advantage of this inorder to navigate between various pages;
+
+-> Any changes to the hash portion does not cause a page reload;
+
+The $location Service
+-----------------------
+This service enables us to get hold of the current URL in the browsers address bar.The location service will keep a watch and observe the URL, if any changes occur, the location service can be use to recognize and change the URL also.
+
+-> Exposes the current URL in the browser address bar:
+i. Watch and observe the URL;
+ii. Change the URL;
+
+-> Synchronize the URL with the browser when the user:
+i. chnages the address bar;
+ii. clicks the back/forward button;
+iii. clicks a link;
+
+-> Allows you to manipulate the hash portion of the URL and provides various methods among them are:
+i. url(): get/set the URL;
+ii. path(): get/set the path;
+iii. search(): get/set the search part;
+iv. hash(): get/set the hash part;
+
+
+Routing
+----------
+Mapping the path portion of a URL to a handler for that particular route.
+- Route is the hash portion of the URL in the context of SPAs.
+
+ngRoute Module
+---------------
+bower install angular-route -S
+Manages the interaction between the $location service and the rendered view.
+ 
+Dependency injection into the module:
+angular.module('confusionApp',['ngRoute'])
+
+
+$routeProvider
+------------------
+This angular provider enables mapping from the routes to the handlers.
+Handlers are javascript object that defines 
+i. Template URL, 
+ii. controller;
+
+$routeProvider Configuration
+------------------------------
+Inorder to use the $routeProvider it must be configured using the config function with $routeProvider as a parameter;
+
+$route provider has a method called when 
+-> the when function takes two parameters;
+1 -> URL (If the hash portion of the URL matches what is specified), the specified html page must be rendered using the corresponding template/html and the controller;
+2. -> corresponding templateUrl, and controller to render the page;
+
+otherwise -> default route;(no match)
+
+$routeParams
+--------------
+Parameters to be passed between the controller and view via service;
+
+ngView Directive
+-------------------
+Directive that works with $route service to include the rendered template of the current route into the main layout.
+
+usage
+--------
+<ng-view></ng-view>
+<div ng-view></div>
+
+Where-ever the ngView directive is defined the route provider will come in and stick the view into place.
+(between the header and footer -> included templates via nginclude directive);
+(now in SPA use ngView -> routes);

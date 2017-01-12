@@ -1,0 +1,41 @@
+Angular UI-Router for SPA's
+---------------------------
+
+-> Limitations og ngRoute
+------------------------
+i. Only one view is allowed per page;
+-> no supporet for multiple views
+-> no support for nested views
+
+ii. Application views tied ti the route URL;(close relation between Route and View);
+
+
+->Angular UI Router
+---------------------
+i.View based on the state of the application;
+-> can change parts of your site using routing even if the URL doesn't change;
+
+ii. Multiple views
+
+iii. Nested Views;
+
+
+-> uiView Directive
+------------------------
+Indicates where to include the views;
+
+<div ui-view = "header"></div>
+
+-> ui-sref
+-------------------
+Use ui-sref="state" to indicate which state to move to when clicked;
+
+<a ui-sref="app"></a>
+
+* corresponding href will be generated upon compilation;
+
+-> $stateParams
+--------------------
+* menu.html
+<a ui-sref="app.dishdetails({id: dish._id})">.....</a>
+-------------------------------------------------------------

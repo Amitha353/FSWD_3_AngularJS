@@ -1,0 +1,82 @@
+Dependency Injection
+---------------------
+->Software design pattern, useful for implementing application where one object that is dependent on another object, that is efficient.
+
+-> 2 parts (dependency and injection)
+-------------------------------------
+i. Dependency -> Your object is dependent on another objects.An object that can be used (a service).
+ii. Injection -> Passing of the dependency to a dependent object so that it can be use it.The client does not need to build the object.
+-> Coined by Martin Fowler in 2004;
+
+
+I. Dependency
+----------------
+If an object is dependent on another object it access the object in three other ways:-
+------------------------------
+i. Create dependency using a new operator.(create object withe new operator);
+
+ii. Lookup dependency using a global variable.(dependency is declared as a global variable and thereafter accessed);
+
+iii. Have dependency passed to it where needed.(flexible, Hardcoding of dependency avoided, testing bexcomes feasible, dependency injection is done);
+(Testing can be done, insert a mock object into your object and then carry out the testing);
+
+---------------------------------------------------------------
+***Dependency Injection
+-------------------------
+It brings about four different roles that er need to consider:-
+i. The service -> that is gonna be used, and needs to be injected;
+ii. The client -> It is dependent upon the service; Service needs to be injected into the client;
+iii. The interface -> Once the service is injected how do you make use of that service.
+iv. The injector -> Entity responsible for injecting - service into client when required;
+--------------------------------------------------------------------------------
+*****Angular and DI
+------------------
+-> Angular exploits dependency injection;
+-> The approach in Angular is to separate business logic (independent object and inject them wherever it is required)from dependency construct.
+-> The dependency is passed to the object consuming it where it is needed.
+-> How is the injection taken care of?
+Angular injector subsystem is responsible for this and provides the below mechanism  
+a. creates components,
+b. resolves their dependencies, and
+c. provides them to other components;
+
+-> DI is extensively used in AngularJS;
+
+-> Components such as services, directives, filters and animations can be injected;
+They are defined by injectable factory methods or constructors, and are injected;
+
+-> Controllers , eg , can be injected with these components; 
+-> Angulars config and run methods also accept injection in some components;
+------------------------------------------------------------------------------------
+**Dependency Annotation in Angular
+----------------------------------
+-> HOW DO WE SPECIFY DEPENDENCY INJECTION IN ANGULAR?
+Three different ways of expressing dependency annotations.
+
+a. Inline array annotation:-
+-----------------------------
+-> dependency mentioned in an array;
+module.controller('MenuController', ['$scope','menuFactory', function($scope, menuFactory){
+
+}]);
+
+b.$inject property annotation
+-----------------------------
+->create a function
+->functionname.$inject -> takes an array of dependency;
+-> controller;
+
+var MenuController = function($scope, menuFactory) {
+
+};
+MenuController.$inject = ['$scope, 'menuFactory'];
+module.controller('MenuController', MenuController);
+
+c. Implicit Annotation
+------------------------------
+module.controller('MenuController', function($scope, menuFactory) {
+
+});
+//Drawback -> using uglification with manglin - that might end up causing problems;As uglificatio and manglin might replaced by single letters that might cause error in the code; 
+
+//ngannotate -> module - converts the implict annotation into an inline array annotation during process of uglification and manglin, and hence protects it to a certain extent;
