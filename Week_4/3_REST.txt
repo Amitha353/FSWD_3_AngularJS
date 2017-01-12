@@ -1,0 +1,82 @@
+Representational State Transfer
+----------------------------------
+
+-> What are Web Services ?
+
+A system designed to support interoperability of systems connected over a network.
+
+It's a service oriented architecture;
+
+A standardized way of integrating web-based applications using a open standards operating over the internet.
+
+- Two common approaches used in practice:-
+
+a. SOAP (Simple Object Access protocol) based services
+i. Uses WSDL(Web Services Description Language);
+ii. XML based;
+->Better for distributed networks;
+
+b. REST(Representational State Transfer)
+i. Uses Web Standards;
+ii. Exchange of data using either XML or JSON;
+iii. Simpler compared to SOAP, WSDL, etc;
+--------------------------------------------------------------------------------
+-> REST
+-------------------------
+* A style of software architecture for distributed hypermedia systems such as the World Wide Web;
+* Introduced by Roy Fielding -> one of the principle author of the HTTP specifications;
+* A collection of network architecture principles which outline hoe resources are defined and addressed;
+
+-> Four basic design principles:
+--------------------------------
+i. Use HTTP methods explicitly;
+ii. Be stateless;
+iii. Expose directory structure-like URIs;
+iv. Transfer using XML, Javascript Object Notation(JSON), or both;
+
+-----------------------------------------------------------------------------------
+-> REST and HTTP
+-----------------
+The motivation for REST was to capture the characteristics of the Web that made the Web successful;
+a. URI Addressable resources;
+b. HTTP Protocol;
+c, Make a Request - Receive Response - Display Response;
+
+Exploits the use of the HTTP protocol beyond the HTTP POST and HTTP GET
+-> HTTP PUT, HTTP DELETE;
+-> Preserves Idempotence (clients can make that same call repeatedly while producing the same result.)
+
+-> REST Grammer
+-----------------
+I. Nouns
+Resources that can access over the network;
+Unconstrained;
+eg :- URL'S, document, video, conceptual mapping to a set of entities;
+
+II. Verbs 
+Purpose or perform action;
+Constrained
+eg :- GET, PUT, POST, DELETE;
+
+III. REPRESENTATION
+Constrained
+eg :- XML, JSON;
+-----------------------------------------------------------------------------------
+verbs
+---------
+get -> read
+post -> create
+put -> update
+delete -> delete
+---------------------------------------------------------------
+Stateless Server
+------------------
+This is for scalability or else the server would get exhausted;
+-> Server side should not track the client state: Every request is a new request from the client;
+
+-> The client side should track its own state:
+Like -> using cookies, client side database;
+-> every request must include sufficient information for the server to serve up the requested information;
+-> Client side MVC setup;
+
+

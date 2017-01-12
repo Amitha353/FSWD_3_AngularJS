@@ -1,0 +1,81 @@
+Network Essentials
+----------------------
+
+-> Web applications are not standalone they need a web server in the backend to communicate.
+
+-> Dynamic information ;
+
+-> Many web applications have a cloud backend;
+
+-> The cloud is a general term used to represent many different things;
+(The cloud hosts the backend server with which we will be communicating inorder to retrieve data or post changes to the data to the backend);
+
+-> The server will in turn be persisting the data in a backend database of some sort;
+
+-> Communication is facilitated via HTTP with REST API;
+
+-> Networking Alphabet Soup
+---------------------------
+1. HTTP -> Hypertext transfer protocol;
+(GET , PUT, POST);
+2. URL -> Uniform resource Locator
+3. JSON -> Javascript Object Notation, which is a format used for communcation between client and server;
+4. XML -> Extended Markup Language;
+5. SOAP -> used on top of HTTP as a protocol for distributed communication;
+6. REST -> REpresentation State Transfer;
+
+------------------------------------------------------------
+Client-Server Communication
+------------
+-> Network operations cause unexpected delays;
+-> You need to write applications recognizing the asynchronous nature of the communication;
+- Data is not instantaneously available;
+
+
+-----------------------
+1. HHTP ->  Hypertext transfer protocol;
+
+* A client-server communication protocol;
+* Allows retrieving inter-linked text documents(hypertest) - World Wide Web;
+
+* Various Verbs
+a. HEAD
+b. GET -> When information is required by the browser from the server a get request is issued by the client to the server;
+c. POST
+d. PUT
+e. DELETE
+f. TRACE
+g. OPTIONS
+h. CONNECT
+
+------------------------
+HTTP Response Codes(Main Ones)
+a. 200 -> OK
+b. 201 -> Created
+c. 301 -> Moved Permanently 
+d. 304 -> Not Modified
+e. 400 -> Bad Request
+f. 401 -> Unauthorized
+g. 403 -> Forbidden
+h. 404 -> Not Found
+i. 422 -> Unprocessable Entry
+j. 500 -> Internal Server Error
+k. 505 -> HTTP Version not supported;
+
+------------------------------------------------
+HTTP Response
+
+-> Server may send back data in a specific format:
+i. eXtensible Markup Language (XML);
+ii. Javascript Object Notation(JSON)
+
+----------------------------------------------------------------
+JSON
+-----
+-> Lightweight data interchange format;
+-> Language independent *;
+-> Self-describing and easy to understand;
+-> collection of name/values pairs;
+-> ordered list of values;
+-> Mapping between JSON DATA - JAVASCRIPT OBJECT;
+----------------------------------------------------------------

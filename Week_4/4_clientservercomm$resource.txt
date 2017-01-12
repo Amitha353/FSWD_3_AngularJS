@@ -1,0 +1,56 @@
+Client-Server Communication using $resource
+-----------------------------
+
+The resource service is a higher level abstraction than the HTTP service;
+The resource service facilitate communication with a server that exports a restful API.
+
+-> Angular ngResource
+--------------------------
+The ngResource module provide a high level abstraction than $http for interacting with a RESTful API server;
+- Not a part of Angular core;
+
+Dependency injection required -> "ngResource";
+
+-> Angular $resource Service
+------------------------------
+It is a convenient wrapper around a REST API to perform CRUD operations;
+- No need to deal with $http directly, higher level abstraction;
+
+-> Dependency Injection -> .service('menuFactory', ['$resource', 'baseURL', function($resource, baseURL) {
+}])
+
+-> Usage -> $resource(url,[paramDefaults],[actions], options);
+
+-> $resource default actions
+-----------------------------
+{'get':{method:'GET'},
+'save':{method:'POST'},
+'query':{method:'GET',isArray:true},//returns a json object array;
+'remove':{method:'DELETE'},
+'delete':{method:'DELETE'}
+};
+
+-> Using $resource example
+----------------------------
+$resource(baseURL+"dishes/:id",null,{'update':{method:'PUT'}});
+
+- built in method
+-------------------------
+.query()
+.get()
+.save()
+.remove()
+.delete()
+
+$scope.dishes = $resource(baseURL+"dishes/:id",null,{'update':{method:'PUT'}}).query();
+
+-> On assignment and before the completion of the request - $scope is assigned an empty object, after the processing the data it is assigned to dishes;
+Hence explicitly assigning $scope.dishes = {} not required;
+
+-> All non get methods are available automatically and can be invoked using the $ prefix;
+-> dish.$save();
+
+-> Custom PUT request:
+-----------------------
+$scope.dishes = $resource(baseURL+"dishes/:id",null,{'update':{method:'PUT'}})
+.update({id:$scope.dish.id},$scope.dish);

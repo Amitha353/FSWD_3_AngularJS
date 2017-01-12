@@ -1,0 +1,86 @@
+Angular $http
+----------------
+The angular 4http service is a core of angular services that enables to communicate with the server using the HTTP Protocol via the browser's
+a. XMLHttpRequest
+b. JSONP;
+
+-> Operation is asynchronous in nature;
+When you request for data, it is not provided instantly, there may be a delay and angular provides promise;
+
+-> Promise 
+---------------
+It is a generic service that angular provides. It is used whenever operations are to be performed asynchronously;
+
+				Asynchronous Work
+						|
+						|
+					   \ /
+					   Promise
+					   /	\
+					  /		 \
+				States		Handlers/Callbacks
+			  ---------		-----------------
+			  pending
+			  fulfilled ------> success
+			  rejected -------> error
+			  
+			  
+The promise object can be in one of three states:-
+i. pending states -> when the promised is initiated and not yet resolved;
+When the promise gets resolved, the asynchronous work gets completed, then the resulting state could be either 
+ii .fulfilled -> promise is satisfied;
+iii. rejected -> asynchronous work is not completed;
+
+The callbacks are Javascript functions;success function or error function;
+
+Angular $q service -> runs functions asynchronously and uses the return value (or exceptions) when they are done processing;
+------------------------------------------------------------------------------------
+The $http service
+-----------
+-> The $http service returns a promise:
+
+-> Invoke a http service
+$http({method:'GET', utl:'/dishes'})
+	.then(function(){.....},//success
+	function() {......});//error
+
+-> Shortcut methods:
+$http.get(),
+$http.put(),etc
+
+Example
+---------------
+HTTP GET:
+$http.get(baseURL+"dishes")
+.then{
+	function(response) {
+		$scope.dishes = response.data;
+		$scope.showMenu = true;
+	},
+	function(response) {
+		$scope.message = "Error: "+response.status+" "+response.statusText; 
+	}
+};
+
+-------------------------------------------------------------
+HTTP Response
+----------
+The response coming from the server is sent as a parameter to the functions. It is a response object with several properties.
+
+a. response.data : string/ object containing the body of the message;
+b. response status : status code;
+c. response.headers : header information;
+d. response.config : configuration object;
+e. response.statusText : HTTP status text of the response;
+---------------------------------------------------------------------------------
+ngIf Directive
+---------------
+-> It's like the ng-show and ng-hide directive;
+
+-> It can be used to add/remove a portion of the DOM tree based on an expression;
+The ng-show and ng-hide does not remove the DOM element;
+
+<div class="col-xs-12" ng-if="!showMenu">
+	<h3>{{message}}</h3>
+</div>
+----------------------------------------------------------

@@ -1,0 +1,61 @@
+Angular Testing
+----------------
+-> Angular was implemented in a modular fashion - Angular applications consist of controllers, filters, factories, services and providers, etc..;
+
+-> Dependency Injection;
+
+Test-Driven Development
+---------------------------
+-> Write an automated test case defining the desired functionality;
+-> Write application code to pass the test;
+-> Refactor the code to meet coding standard;
+
+Unit Testing
+----------------
+-> Testing Individual Units of code
+* Restricted to verifying if the component's logic is implemented correctly;
+
+-> Isolating the unit under test from other dependencies is important
+* Dependency injection enables us to inject mock dependencies;
+* Clear separation in Angular between the DOM and logic through the use of $scope;
+
+Controllers don't directly manipulate the DOM, instead controllers put data onto the scope, and then through angular, it takes care of reflecting changes to the DOM, and vice versa;
+
+------------------------------------
+Jasmine
+----------
+Behavior driven development framework for Javascript;
+*adopted to test Angular application;
+*Use "describe" function to group our tests;
+*Use "it" function to define individual tests;
+
+Example
+---------
+describe('Controller:MenuController', function() {
+	it('should create "dishes" with 2 dishes fetched from xhr', function() {
+		expect(scope.showMenu).toBeTruthy();
+	});
+});
+------------------------------------------------------------------------
+Karma
+----------
+Javascript based command line tool (NodeJS application)
+
+- Allows you to specify your tests using Jasmine and spawns a web server and automatically load your application's source code;
+
+- Executes your tests in the browser;
+------------------------------------------------------------------------------
+angular-mock
+------------
+Many of the modules/components are dependent on others;
+When tests are being carried out , some of these components may be mocked to supply pre-determined data to carry out angular test;
+
+Angular ngMock -> module provides mocking support for your tests;
+
+-> Inject and mock Angular services within unit tests;
+-> Make asynchronous modules execute synchronously to make it easier to execute test;
+-> $httpBackend lets us mock XHR request in tests;
+
+-> beforeEach function takes in parameters that will be needed prior or beforehand;
+-----------------------------------------------------------------------------------
+
