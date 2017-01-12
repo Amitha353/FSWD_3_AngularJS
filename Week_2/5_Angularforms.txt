@@ -1,0 +1,91 @@
+Angular Forms and Form Validation
+---------------------------------
+Angular's two-way data binding makes it straightforward to work with forms:
+
+-> Define the Javascript object on the $scope.
+.controller('ContactController',['$scope', function($scope) {
+    $scope.feedback = {
+        mychannel:"",
+        firstName:"",
+        lastName:"",
+        agree:false,
+        email:""
+    };
+}]);
+
+-> Use ng-model directive on form fields
+
+<input type="text" class="form-control" id="firstname" name="firstname"
+placeholder="Enter First Name" ng-model="feedback.firstName" required>
+
+--------------------------------------------------------------------------------------------------
+* Binding Select
+
+If you have select elements in the form, angular provides a wonderful way of managing the select elements.
+
+-> Select items can be bound by defining Javascript object.
+
+//Defining a javascript object array and expose it using the $scope object and ng-options directive makes use of the object within the array and through it use the options.
+
+Channel.label property -> label for the select options;
+Channel.value -> is assigned to the Javascript property through the ng-model directive.
+
+Dynamically generate options.
+Default options -> Tel. or Email
+------------
+var channels = [{value:"tel", label:"Tel."},
+                {value:"Email", label:"Email"}];
+                
+-> The binding using ng-options directive
+
+<select class="form-control" ng-model="feedback.mychannel"
+ng-options="channel.value as channel.label for channel in channels">
+<option value="">Tel. or Email?</options>
+</select>
+
+--------------------------------------------------------------------------------------------------
+Angular Form Validation
+-------------------
+->HTML5 comes with bult in support for validation and hence if you are using Angular, this validaiton can be removed/ turned off.
+
+-> Turn off HTML5 form validation:
+<form class="form-horizontal" name="feedbackForm" ng-submit="sendFeedback()" novalidate>
+
+-> Angular takes over the responsibility for validation.
+
+-> Make sure to give the form a name.
+
+-> ng-submit directive specifies the function to call.
+--------------------------------------------------------------------------------------------------
+Angular Form Validation Directives
+-----------------------------------
+-> Angular validates the form fields before copying the value to the $scope
+
+-> Some directives of interest:-
+i. ng-minlength
+ii. ng-maxlength
+iii. ng-pattern: can use regex;
+--------------------------------------------------------------------------------------------------
+*Field Properties
+---------------
+Use field name and form name:-
+Example:-
+- feedbackForm.firstName.$pristine -> form
+- $scope.feedbackForm.firstName.$pristine -> controller code.
+
+Property         Description
+----------------------------------------------------------
+1.$pristine     true if form has been changed
+2.$dirty        reverse of $pristine
+3.$valid        true if form field/whole form is valid
+4.$invalid      reverse of $valid
+--------------------------------------------------------------------------------------------------
+*Field Properties and CSS
+--------------------------
+
+-> Bootstrap provides a lot of CSS classes to enable display of form validation state and messages:
+- .has-error, .has-warning, .has-success
+- .help-block to display helpful mesages below the field.
+--------------------------------------------------------------------------------------------------
+
+

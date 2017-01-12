@@ -1,0 +1,114 @@
+Grunt Exercise
+---------------
+
+1. cmd line install -> npm install -g grunt cli
+
+2. Within confusion folder -> create package.json 
+{
+    "name": "conFusion",
+    "private": true,
+    "devDependencies": {
+    
+    },
+    "engines": {
+        "node": ">=0.10.0"
+    }
+}
+
+3.Install grunt locally -> within conFusion folder
+cmd line -> npm install grunt --save-dev
+
+4.Create a Gruntfile.js within conFusion folder.
+
+'use strict';
+
+module.exports = function (grunt) {
+
+    // Define the configuration tasks here.
+    grunt.initConfig({
+    
+    
+    });
+};
+
+5. configure the project to use grunt -> menu.html -> menu_grunt.html -> web page
+
+Insert the build comment at the beginning of all css links.
+end build after the css files -> so that it can be used by the usemin package to concatenate all the css files.
+
+6. import app.js
+Move the angular code within the scripts of the html into a javascript file.
+app.js -> app/scripts/app.js
+
+7. enclose all the js files for useminPrepare -> concatenate and ufglify them.
+
+
+8. create app.js file (app/scripts/app.js)
+add the angular script within it.
+-> chaining mechanism;
+
+9. configure the jsHint module -> jshinting grunt task;
+a. npm install grunt-contrib-jshint --save-dev
+b. npm install jshint-stylish --save-dev
+c. npm install time-grunt --save-dev -> keeps a track of time taken by each task and generates statistics.
+d. npm install jit-grunt --save-dev
+jit -> just in time grunt (imports the grunt modules when needed).
+
+10. gruntfile.js -> configure jshint file
+
+11. create a file .jshintrc in confusion folder:-
+Here information for what jshint in supposed to look into is stated.
+
+12. cmd line -> grunt (run);
+
+13. copy and clean modules
+npm install grunt-contrib-copy --save-dev
+npm install grunt-contrib-clean --save-dev
+
+14. gruntfile.js configure clean and copy
+
+15. cmd -> grunt
+If dist  exist
+clean -> jshint(checks for error) -> copy dist 
+
+now dist folder appears -> dist contains all the files required when the web server goes live.
+
+16. preapare the distribution folder and files
+npm install grunt-contrib-concat --save-dev
+npm install grunt-contrib-cssmin --save-dev
+npm install grunt-contrib-uglify --save-dev
+npm install grunt-filerev --save-dev
+npm install grunt-usemin --save-dev
+
+
+17. gruntfile.js
+- All the above modules
+Inform jit that useminPrepare is a part of the grunt-usemin task.
+the modules are empty and configured at run time by the respective tasks.
+
+
+18. dist folder
+scipts folder -> main.(20 character tag).js -> filerev attached the revision number;
+styles folder -> main.(big tag).css 
+
+These two files are suffcient for the menu.html to work correctly.
+
+Now you open the menu_grunt.html page -> includes the main.(20 character tag).js and  main.(big tag).css required for the project.
+
+main.(20 character tag).js 
+main.(big tag).css  
+->(2 above files) for the browser consumption;
+
+
+19. watch and connect grunt modules
+
+
+20. geuntfile.js 
+configure watch and connect.
+
+21. Add the grunt server task.
+
+22. cmd -> grunt serve -> build -> server on tha page -> watch;
+
+
+

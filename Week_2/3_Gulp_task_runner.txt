@@ -1,0 +1,96 @@
+Gulp task runner
+------------
+-> Code over configuration approach.
+-> Uses Node.js streams to build complex pipelines, avoiding creation of intermediate files.
+
+Node.js stream -> file flowinf in into gulp task and processed and feed to the next function until goal achieved.
+
+-> plugins are simple and do one thing well.(Tasks are designed to do one task very well.)
+-> Tasks are executed with maximum concurrency possible.
+
+-------------
+1. Install gulp
+npm install -g gulp;
+
+2. Locally
+npm install gulp --save-dev -> package.json
+
+3. Gulpfile.js 
+Tasks of gulp,
+Before the tasks are configured, it is required to insatll some gulp plugins.
+---
+gulp plugins
+--
+
+Load in the plugins
+---
+var gulp = require('gulp'),
+....
+
+can also use gulp-load-plugins to load all plugins specified in package.json;
+
+----------------------------------
+Gulp Streams
+---
+Gulp operatess using node streams.
+Start ->  bunch of files;
+-> pass them through a pipe;
+-> In between they will be modified using one function 
+-> Then the result coming out of it will be piped through to the next function.... -> dest
+file
+| pipe
+|
+----
+|   | function
+_____
+|
+| pipe
+----
+|   | function
+_____
+|
+dest
+--------------------
+gulp.src() -> function that takes file globs and creates a stream ob objects that represents the files.
+pipe() -> Allows the streams to be piped through a function.
+gulp dest() -> specifies the destination of the changed files.
+----------------------------------------------------------------------
+JSHint
+--
+configuration in Gulp.js
+
+gulp.task('jshint', function() {
+    gulp.src('app/scripts/**/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reported((stylish));
+});
+----------------------------
+Imagemin
+----
+Images from image folder -> optimizes for use;
+------------
+Cleaning up
+ Remove all files from dist folder -> using node module -> del;
+ ------------
+ usemin task
+ ----------
+ jshint task must run before usemin task;
+ --------------
+ BrowserSync
+ --
+ Node package -> atart web browser are serves static web page , html, css, js ; - npm module and not task;
+ default task -> builds the distribution folder;
+ 
+ watch task -> watches the files taken as a parameter, if changes are made, it is rebuilt;
+ --------------
+ Watch task 
+ -----
+ Keeps a watch on the files;
+ -------------
+ Default Task
+ --
+ gulp provides a default task;
+ cmd -> gulp
+ 
+ ---------------
+ Gulp executes all the tasks asynchronously and simultaneously;

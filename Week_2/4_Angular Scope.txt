@@ -1,0 +1,55 @@
+Angular Scope($scope)
+-------------
+
+->Scope is an object that refers to the application model.
+->This is at the core of Angular's two-way binding.
+->The glue between the view and the controller
+    -   The controller can set properties on the scope.
+    -   The view binds to the properties set by the controller.
+    -   Angular is responsible to keep the two sync.
+
+I. $rootScope
+---------------
+->The topmost scope is called the $rootScope, it is created by Angular when your app starts.
+-> As angular traverses the DOM, it creates new scopes when it encounters some directives.
+    - ng-controller, creates a new scope under the root scope.
+    - scope tree is similar to the DOM tree.
+    
+II. Nested Scope
+----------------
+EVERY TIME ANGULAR CREATES A NEW SCOPE, IT WILL CREATE IT AS A CHILD OF A PARENT SCOPE.
+JavaScript prototype -> Inheritance -> child can access all parent properties on the scope vice-versa is not possible.
+
+Example
+-------
+creating scope. -> to use angular scope.
+
+Initially the variables and functions defined is controller was prefixed with this. -> and this exposes it to the view.
+
+But here we use $scope, the $scope gets injected into the controller.
+//controller
+.controller("controllername", [$scope, function($scope) {
+$scope.var
+$scope.fun
+}]);
+
+//view
+Specify the elements with name rather than controllername.elementname;
+
+III. Scope Hierarchy
+------------------
+
+$rootScope -------------
+                        |
+parent     ----->    scope  -------->       view
+controller              |
+                    ----|
+Child       ---->   |  scope  -------->     view
+controller          |
+                    |____
+Child     ----->         |
+controller             scope    ------->    view
+
+
+--------------------
+Require plugin -> gulp-ng-annotate.

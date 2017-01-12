@@ -1,0 +1,43 @@
+Web Tools -> Task runners -> Grunt and Gulp
+
+-> Web development involves a lot od repetitive tasks, every time a change is made in a HTML osra CSS file it must be recompiled and minify it , or concatenate a bunch of files in order to create the concated file.
+
+->Principle behind the task runners is to make the repetitve tasks easy to perform.
+DRY(do not repeat yourself) principle.
+
+Therefore the need to build tools for automated tasks.
+------------
+Some of the repeatitive tasks trhat should be performed.
+
+*CSS Tasks
+---------
+i. compiling sass or less into css.
+ii. running autoprefixer to add any vendor prefixes that are needed.
+iii. minification -> removes unnecessary characters (white spaces, newlines, comments) from source code without comprimising functionality.
+iv. concatenation
+
+
+*Javascript Tasks
+---------------
+i. JSHint: - Checking Javascript code for error and potential problems (static code analysis).
+ii. Concatenation 
+iii. Uglification - minification + mangling(reduce local variables to single letters).
+iv. Rechecking errors.
+
+*Other tasks
+----------
+i.  Images -> optimizing files to reduce file sizes.
+ii. Watch -> mechanism for changes in files and automatically rerunning tasks.
+iii. Server and Livereload
+iv. Testing
+v.  Building your site for deployment.
+--------------------------------------------------------------------------------------------
+*Task Runners
+
+-> For the above scenarios task runners are essential.
+-> Configure the task once, and rerun it automatically as many times as needed.
+-> several task runners are -> Grunt, Gulp, Cake, Brunch, Broccoli;
+-> Build systems for the web.
+
+* Grunt -> Configuration over code -> configure all tasks ahead of time abd then grunt takes care of it.
+* Gulp -> code over configuration -> create tasks by writing code and it allows you to run, less emphasis on configuration.

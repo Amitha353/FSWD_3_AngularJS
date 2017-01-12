@@ -1,0 +1,242 @@
+Web Tools -> Grunt 
+Configuration over code.
+
+-> Grunt is a task runner which is based on configuration of tasks.
+
+-> Installing Grunt
+- install global package -> grunt-cli (command line interface package for Grunt).
+- npm install -g grunt-cli.
+
+
+Install Grunt localy (every project)
+----------------
+npm install grunt --save-dev
+
+-> need to setup package.json file
+
+
+Configuring Grunt
+--------------------
+configuration is in Gruntfile.js
+
+Inside the Gruntfile.js modules are configured.
+grunt -> used as a parameter ia an object that is used to configure Grunt tasks.
+
+- Require statements are used to import all the Grunt modules that we are gonna make use of.
+
+- initConfig -> method call -> takes a parameter all the configurations for the Grunt module that we're gonna use to accomplish the tasks.
+
+-then register some custom tasks for Grunt -> grunt.registerTask -> specify the name and all the different grunt tasks that need to be performed when this special task is executed.
+
+
+File Globbing Patterns
+------------------------
+
+When you look at the Grunt configurations -> notice a lot of 
+->open and close paranthesis (),
+-> **
+->\
+-> *.js
+->*.css
+-> etc
+- These are file globbing patterns.
+
+-> Grunt uses filename expansion expansions (globbing)
+- * matches any number of characters, but not /
+- ? Matchesa single character, but not /
+- ** matches any number of characters, including /, as long as it's the only thing in a path part
+- {} allows for comma-separated list of "or" expressions
+- ! At the beginning of a pattern will negate the match
+
+
+ JSHint 
+ ----------------------------
+ -> Grunt Module, allows us to check the code for error. It must be done on all JS file. Static code checking for javascript code.
+
+-> JSHint package to carry out the above tasks. Grunt has a module to use jdhint, it is configure within initConfig.
+
+-> JsHint - is a package use to style the output in a more readable fashion.
+a. Install
+----
+npm install grunt-contrib-jshint --save-dev
+npm install jshint-stylish --save-dev
+
+
+* JSHint -> static JS code analysis tool;
+* .jshintrc :- json file contains configuration for JSHint;
+
+b. Configuration
+----------------
+(mentioned within the gruntfile.js -> initConfig function)
+
+jshint: {
+    option: {
+        jshintrc: 'jshintrc',//json file used by jshint
+        reported: require('jshint-stylish')
+    },
+    all:{
+        src:['Gruntfile.js','app/scripts/{,*/}*.js'] -> check all js files
+    }
+}
+-----------------------------------------------------------------------------------------
+* Creating a distribution Folder
+-------------
+The distribution Folder contains only those files that are essential to serve up yout website.
+-> Your project conatins many files - Bower components, node modules, Less/Sass files and configuration files.
+
+-> You wish to generate a distribution folder that contains 
+- only essential to serve up your website.
+- compacted and minified files.
+
+-------------------------------------
+2 tasks -> Copy and Clean 
+src - app
+dest - dist
+
+
+-> create a distribution folder and clean up the distribution folder:
+ - npm install grunt-copy --sav-dev
+ - npm install grunt-clean --save-dev
+ 
+-> Configuration
+i. copy
+----
+copy: {
+    dist: {
+        cwd: 'app',
+        src: ['**','!**/*.css','!**/*.js'],//all other files except js and css files
+        dest: 'dist',
+        expand: true
+    }
+}
+
+ii. clean
+------
+clean : {
+    build: {
+        src:['dist/']
+    }
+}
+
+grunt.registerTask('build', ['clean','jshint','copy']);
+---------------------------------------------------------------------------------------------
+Complete prepartion of the Distribution folder
+------
+Grunt modules:
+i. npm install grunt-contrib-concat --save-dev
+ii. npm install grunt-contrib-cssmin --save-dev
+iii. npm install grunt-contrib-uglify --save-dev
+iv. npm install grunt-contrin-filerev --save-dev
+v. npm install grunt-usemin --save-dev
+
+
+a. grunt-usemin 
+------
+This modules is an umbrella task that takes the help of the concat module, cssmin, uglify, filrev module inoder to accomplish this task.
+
+Flow of tasks:
+-> useminPrepare - this prepares a set of files to be used for the remaining tasks.
+[
+* looks into the html file fot comments:-
+<!--build:css styles/main.css -->
+.......
+<!--endbuild-->
+
+* Configuration: 
+useminPrepare: {
+    html: 'app/menu.html',
+    options: {dest:'dist'}
+}
+
+will automatically generate configuration information for concat, cssmin and uglify tasks.
+]
+
+-> concat - concatenate all the css files together and jsfiles together
+-> cssmin - on the css files
+-> uglify - on the js files
+-> filerev - when combined css and js files are created, it attches an additional revision number to it.It cancels the previous cached files and the user is made to redownload the new css and js files when they visit the website.
+
+[
+    Revision your files : adds revision tag to the name of your file:
+    - eg.: main.css -> main.2434546547.css
+    
+    configuration
+    
+    filerev: {
+        option: {
+            encoding: 'utf8',algorithm:'md5', length: 20
+        },
+        release: {
+            files:[{
+                src:['dist/scripts/*.js','dist/styles/*.css',]
+            }]
+        }
+    }
+]
+
+
+-> usemmin - confiure the HTML FILE TO USE THE CONCATENATED CSS AND JS files.
+[
+    After cancat, cssmin, uglify and filerev are run, this will replace the css abd JS links with a single concatenated files from the dest folder.
+    
+    Configuration:
+    ------
+    usemi: {
+        html:['dist/*.html'],
+        css:['dist/styles/*.css'],
+        options: {
+            assetsDirs:['dist','dist/styles']
+        }
+    }
+]
+useminPrepare -> concat -> cssmin -> uglify -> filerev -> usemin
+
+--------------------------------------------------------------------------------
+Watch
+-------
+
+Watch task -> Keep a watch on files and reruns tasks whenevr changes occur. (development)
+npm install grunt-contrib-watch --save-dev
+
+-> Configuration:
+watch : {
+    copy : {
+        files: ['app/**','!app/**/*.css','!app/**/*.js'],
+        tasks: ['build']
+    },
+    livereload: {
+        options: { livereload:'<#=connect.options.livereload%>' },
+        files: ['app/{,*/}*.html','.tmp/styles/{,*/}*.css','app/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}']
+    }
+}
+
+-------------------------------------------
+Connect 
+-----
+Connect task -> Starts a server to serve the website, open tha browser and it along with watch ensure the browser is live reloaded.
+npm install grunt-contrib-connect --save-dev
+
+Configuration:
+connect: {
+    options: {
+        port: 9000, hostname:'localhost',livereload: 35729
+    },
+    dist: {
+        options: {
+            open: true,
+            base: {path:'dist', options:{index:'menu.html'},m}
+        }
+    }
+}
+---------------------------
+Grunt Taks
+
+-> Register Multiple Tasks:
+
+grunt.registerTask('build',['clean','jshint','useminPrepare','concat','cssmin','uglify','copy','filerev','usemin']);
+
+grunt.registerTask('serve',['build','connect:dist','watch']);
+
+grunt.registerTask('default',['build']);
+
+
