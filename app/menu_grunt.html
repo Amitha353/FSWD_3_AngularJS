@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="confusionApp">
+    <head>
+         <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head
+         content must come *after* these tags -->
+        <title>Ristorante ConFusion: Menu</title>
+        <!-- Bootstrap -->
+
+        <!-- build:css styles/main.css -->
+        <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="styles/bootstrap-social.css" rel="stylesheet">
+        <link href="styles/mystyles.css" rel="stylesheet">
+        <!-- endbuild -->
+    </head>
+    <body>
+        <div class="container">
+            <div class="row row-content" ng-controller="menuController as menuCtrl">
+                <div class="col-xs-12">
+                    <div class="tab-content">
+                        <ul class="media-list tab-pane fade in active">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" ng-class="{active:menuCtrl.isSelected(1)}">
+                                    <a ng-click="menuCtrl.select(1)" aria-controls="all menu" role="tab">The Menu</a>
+                                </li>
+                                <li role="presentation" ng-class="{menuCtrl.isSelected(2)}">
+                                    <a ng-click="menuCtrl.select(2)" aria-controls="appetizers" role="tab">Appetizers</a>
+                            </li>
+                            <li role="presentation" ng-class="menuCtrl.isSelected(3)">
+                                <a ng-click="menuCtrl.select(3)" aria-controls="mains" role="tab">Mains</a>
+                           </li>
+                            <li role="presentation" ng-class="menuCtrl.isSelected(4)">
+                                <a ng-click="menuCtrl.select(4)" aria-controls="desserts" role="tab">Desserts</a>
+                            </li>
+                        </ul>
+                    </ul>
+                    </div>
+                    <li class="media" ng-repeat="dish in menuCtrl.dishes|filter:menuCtrl.filtText">
+                        <div class="media-left media-middle">
+                            <a href="#">
+                                <img class="media-object img-thumbnail" ng-src={{dish.image}} alt={{dish.name}}>
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h2 class="media-heading">{{dish.name}}
+                                <span class="label label-danger">{{dish.label}}</span>
+                                <span class="badge">{{dish.price | currency}}</span>
+                            </h2>
+                            <p>{{dish.description}}</p>
+                        </div>
+                    </li>
+                </div>
+            </div>
+        </div>
+        <!-- build:js scripts/main.js -->
+        <script src="../bower_components/angular/angular.min.js"></script>
+        <script src="scripts/app.js"></script>
+        <!-- endbuild -->    
+    </body>
+</html>
