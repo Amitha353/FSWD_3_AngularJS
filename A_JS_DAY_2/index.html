@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html ng-app="serviceApp">
+    <head>
+        <script src="js/angular.js"></script>
+        <script src="js/myServices.js"></script>
+    </head>
+    <body>
+        <h3>{{ 50 + 80 + " Welcome!"}}</h3>
+        <h1 ng-controller="servicesController">{{title_val}}<br>
+            {{msg_factory}}<br>
+            Name : {{obj_factory}} <br>
+            {{std_service}} <br>
+            Student - {{std_service.getstdName()}} <br>
+            Provider - {{provider_val}}
+        </h1>
+    </body>
+</html>
